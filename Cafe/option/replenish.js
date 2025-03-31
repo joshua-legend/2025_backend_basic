@@ -7,11 +7,11 @@ class ReplenishOption extends Option {
   #inventoryManager;
   #promptManager;
   #dataManager;
-  constructor() {
+  constructor(inventoryManager, promptManager, dataManager) {
     super();
-    this.#inventoryManager = new InventoryManager();
-    this.#promptManager = new PromptManager();
-    this.#dataManager = new DataManager();
+    this.#inventoryManager = inventoryManager;
+    this.#promptManager = promptManager;
+    this.#dataManager = dataManager;
   }
 
   async execute(data) {

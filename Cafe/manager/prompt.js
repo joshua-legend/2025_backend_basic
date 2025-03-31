@@ -21,4 +21,4 @@ class PromptManager {
     console.log(contents);
   }
 }
-module.exports = { PromptManager, askQuestion };
+module.exports = { PromptManager };
