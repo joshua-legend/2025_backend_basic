@@ -12,9 +12,9 @@ class PromptManager {
     return new Promise((success) => this.#rl.question(query, success));
   }
 
-  askNumberAndAmount() {
-    const menu = this.askQuestion("번호 입력:");
-    const amount = this.askQuestion("갯수 추가:");
+  async askNumberAndAmount() {
+    const menu = await this.askQuestion("번호 입력:");
+    const amount = await this.askQuestion("갯수 추가:");
     return [menu, amount];
   }
   makeConsole(contents) {

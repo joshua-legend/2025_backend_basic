@@ -1,9 +1,9 @@
 class InventoryManager {
   listProduct(data) {
-    data.forEach((v) => console.log(`${v.name} ${v.stock}`));
+    data.forEach((v) => console.log(`${v.getName()} ${v.getStock()}`));
   }
   replenishProduct(data, amount) {
-    data.stock += amount;
+    data.setStock(amount);
   }
 }
 module.exports = { InventoryManager };

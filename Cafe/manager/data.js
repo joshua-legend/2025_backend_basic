@@ -15,6 +15,7 @@ class DataManager {
       keyName,
       data.map((v) => this.makeObj(v))
     );
+    console.log(formatted);
     fs.writeFileSync(env.dataStore, JSON.stringify(formatted), "utf-8");
   }
 }
