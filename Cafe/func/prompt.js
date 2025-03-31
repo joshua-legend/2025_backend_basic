@@ -11,9 +11,11 @@ const rl = readline.createInterface({
 
 const askQuestion = (query) => new Promise((success) => rl.question(query, success));
 const fs = require("fs");
+const { env } = require("../env.js");
+
 const initializeData = () => {
-  if (fs.existsSync("doyou.json")) {
-    const data = fs.readFileSync("doyou.json", "utf-8");
+  if (fs.existsSync(env.dataStore)) {
+    const data = fs.readFileSync(env.dataStore, "utf-8");
     const obj = JSON.parse(data);
     const { coffeeMenu } = obj;
     const newData = coffeeMenu.map((v) => new Coffee(v.name, v.stock, v.price));
@@ -26,8 +28,8 @@ const initializeData = () => {
         { name: "두유라떼", stock: 0, price: 4000 },
       ],
     };
-    fs.writeFileSync("doyou.json", JSON.stringify(initData), "utf-8");
-    const data = fs.readFileSync("doyou.json", "utf-8");
+    fs.writeFileSync(env.dataStore, JSON.stringify(initData), "utf-8");
+    const data = fs.readFileSync(env.dataStore, "utf-8");
     return JSON.parse(data);
   }
 };
