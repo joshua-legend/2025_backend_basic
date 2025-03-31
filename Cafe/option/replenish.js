@@ -1,18 +1,26 @@
-const fs = require("fs");
-const { askQuestion } = require("../func/prompt.js");
 const { Option } = require("./option.js");
-const { env } = require("../env.js");
+const { InventoryManager } = require("../manager/inventory.js");
+const { PromptManager } = require("../manager/prompt.js");
+const { DataManager } = require("../manager/data.js");
 
 class ReplenishOption extends Option {
+  #inventoryManager;
+  #promptManager;
+  #dataManager;
+  constructor() {
+    super();
+    this.#inventoryManager = new InventoryManager();
+    this.#promptManager = new PromptManager();
+    this.#dataManager = new DataManager();
+  }
+
   async execute(data) {
-    console.log("재고 채우기 시작!");
-    data.forEach((v) => v.introduce());
-    const menu = await askQuestion("번호 입력:");
-    const amount = await askQuestion("몇개 추가:");
-    data[+menu].addStock(+amount);
-    const saveData = { coffeeMenu: data.map((v) => v.makeObj()) };
-    fs.writeFileSync(env.dataStore, JSON.stringify(saveData), "utf-8");
-    console.log("재고 업데이트 완료!");
+    this.#promptManager.makeConsole("재고 넣기 시작!");
+    this.#inventoryManager.listProduct(data);
+    const [menu, amount] = this.#promptManager.askNumberAndAmount();
+    this.#inventoryManager.replenishProduct(data[+menu], amount);
+    this.#dataManager.saveData("coffeeMenu", data);
+    this.#promptManager.makeConsole("재고 업데이트 완료!");
   }
 }
 

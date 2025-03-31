@@ -1,4 +1,4 @@
-const { askQuestion, initializeData } = require("./func/prompt.js");
+const { initializeData } = require("./func/init.js");
 const { menuOption, InvalidOption } = require("./option/base.js");
 const main = async () => {
   const data = initializeData();

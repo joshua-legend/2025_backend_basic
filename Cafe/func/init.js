@@ -1,17 +1,9 @@
 // import export browser
 // require moudle.export server
 
-const readline = require("readline");
-const { Coffee } = require("./coffee.js");
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-const askQuestion = (query) => new Promise((success) => rl.question(query, success));
 const fs = require("fs");
 const { env } = require("../env.js");
+const { Coffee } = require("./coffee.js");
 
 const initializeData = () => {
   if (fs.existsSync(env.dataStore)) {
@@ -35,4 +27,4 @@ const initializeData = () => {
 };
 
 //export 문법
-module.exports = { askQuestion, initializeData };
+module.exports = { initializeData };

@@ -7,21 +7,14 @@ class Coffee {
     this.#stock = stock;
     this.#price = price;
   }
-
-  introduce() {
-    console.log(`${this.#name} ${this.#stock}`);
+  getName() {
+    return this.#name;
   }
-  addStock(stock) {
-    this.#stock += stock;
-  }
-  substractStock(stock) {
-    this.#stock -= stock;
+  getStock() {
+    return this.#stock;
   }
   getPrice() {
     return this.#price;
-  }
-  makeObj() {
-    return { name: this.#name, stock: this.#stock, price: this.#price };
   }
 }
 module.exports = { Coffee };
